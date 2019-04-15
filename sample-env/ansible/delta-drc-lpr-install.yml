@@ -1,0 +1,19 @@
+---
+- hosts: "{{ input_hosts }}"
+  become: true
+
+  vars_prompt:
+  - name: input_hosts
+    prompt: please input deployment target's inventory host name or group name
+    default: staging-server
+    private: false
+  - name: input_version
+    prompt: please input version number
+    default: "2"
+    private: false
+
+  roles:
+  - role: delta-drc-lpr
+    vars:
+      delta_drc_lpr_artifact_version: "{{ input_version }}"  
+  

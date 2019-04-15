@@ -1,0 +1,21 @@
+---
+- hosts: "{{ input_hosts }}"
+  become: true
+
+  vars_prompt:
+  - name: input_hosts
+    prompt: Please input the deployment target [dev-server, staging-server] 
+    default: dev-server
+    private: false
+  - name: input_version
+    prompt: Please input version number
+    default: 1.0.5
+    private: false
+
+  roles:
+  - role: solution-from-maven-repo
+    vars:
+      maven_artifact_group_id: com.delta.cms
+      maven_artifact_id: "delta-cms-parking-main"
+      maven_artifact_version: "{{ input_version }}"
+      maven_artifact_extension: zip

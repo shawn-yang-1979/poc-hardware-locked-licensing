@@ -1,0 +1,9 @@
+---
+- name: make sure pip is installed
+  apt: 
+    name: "{{ packages }}"
+    state: present
+    force: yes
+  vars:    
+    packages:
+    - python-pip

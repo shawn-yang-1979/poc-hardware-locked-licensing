@@ -1,0 +1,13 @@
+---
+- name: make sure essential python packages are installed
+  apt: 
+    name: ['python-dev', 'libxml2-dev', 'libxslt-dev', 'python3-lxml', 'python-lxml'] 
+    state: present
+    force: yes
+
+- name: make sure essential python packages are installed
+  apt: 
+    name: ['lib32z1-dev']
+    state: present
+    force: yes
+  when: ansible_distribution == "Ubuntu"

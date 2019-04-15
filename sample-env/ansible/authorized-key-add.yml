@@ -1,0 +1,11 @@
+---
+- hosts: "{{ input_hosts }}"
+
+  vars_prompt:
+  - name: input_hosts
+    prompt: Please input the target [dev-server, staging-server] 
+    default: dev-server
+    private: no
+
+  roles:
+  - role: action-add-authorized-key

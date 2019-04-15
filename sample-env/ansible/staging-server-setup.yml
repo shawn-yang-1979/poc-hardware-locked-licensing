@@ -1,0 +1,10 @@
+---
+- hosts: staging-server
+  become: yes
+
+  roles:
+  - role: action-timezone
+    vars:
+      timezone_name: Asia/Taipei
+  - role: docker-postgres
+  - role: oracle-java-tarball

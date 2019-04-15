@@ -1,0 +1,5 @@
+---
+dependencies:
+- role: module-maven-artifact
+- role: module-unarchive
+- role: solution

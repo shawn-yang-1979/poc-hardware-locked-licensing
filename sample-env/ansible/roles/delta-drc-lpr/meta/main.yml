@@ -1,0 +1,7 @@
+---
+dependencies:
+- role: nvidia-docker
+- role: nvidia-docker-compose
+- role: module-maven-artifact
+- role: module-unarchive
+- role: solution

@@ -1,0 +1,6 @@
+---
+- name: make sure authorized key is added 
+  authorized_key:
+    user: "{{ ansible_user }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    state: present

@@ -1,0 +1,26 @@
+---
+# For this reason: 
+# Ansible is being run in a world writable directory (/ansible), 
+# ignoring it as an ansible.cfg source. 
+# For more information see https://docs.ansible.com/ansible/devel/reference_appendices/config.html#cfg-in-world-writable-dir
+# We still need to move the ansible.cfg to /etc/ansible/  
+- name: create the /etc/ansible/ directory if it doesn't exist
+  file:
+    path: /etc/ansible/
+    state: directory
+- name: copying ansible.cfg template
+  copy:
+    src: ./ansible.cfg.example
+    dest: /etc/ansible/ansible.cfg
+    mode: 0777       
+- name: make sure ansible host_key_checking is disabled
+  lineinfile:
+    dest: /etc/ansible/ansible.cfg
+    regexp: "^#?host_key_checking = False"
+    line: "host_key_checking = False"
+    backrefs: yes
+    backup: yes      
+- name: make sure ssh key pair is generated
+  user:
+    name: "{{ ansible_user }}"
+    generate_ssh_key: yes

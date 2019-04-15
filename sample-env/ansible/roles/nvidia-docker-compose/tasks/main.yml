@@ -1,0 +1,4 @@
+---
+- name: make sure nvidia-docker-compose is install
+  pip:
+    name: nvidia-docker-compose

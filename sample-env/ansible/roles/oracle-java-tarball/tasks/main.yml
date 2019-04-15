@@ -1,0 +1,53 @@
+# Reference: https://github.com/William-Yeh/ansible-oracle-java
+# Thanks William  
+- name: set jdk_version
+  set_fact:
+    jdk_version: 1.{{ java_version }}.0_{{ java_subversion }}
+- name: set jdk_arch
+  set_fact:
+    jdk_arch: '{{ ''i586''  if ansible_architecture == ''i386'' else ''x64'' }}'
+- name: set jdk_tarball_file
+  set_fact:
+    jdk_tarball_file: jdk-{{ java_version }}u{{ java_subversion }}-linux-{{ jdk_arch }}
+- name: set jdk_version_detail
+  set_fact:
+    jdk_version_detail: '{{ java_version }}u{{ java_subversion }}-b{{ java_build_number }}'
+- name: set jdk_tarball_url
+  set_fact:
+    jdk_tarball_url: http://download.oracle.com/otn-pub/java/jdk/{{ jdk_version_detail }}/{{ oracle_java_download_url_uuid }}/{{ jdk_tarball_file }}
+- name: set java_install_dir, java_default_link_name
+  set_fact:
+    java_install_dir: /usr/lib/jvm
+    java_default_link_name: default
+- name: get JDK tarball from {{ jdk_tarball_url }}
+  get_url:
+    url: '{{ jdk_tarball_url }}.tar.gz'
+    headers: Cookie:oraclelicense=accept-securebackup-cookie
+    dest: '{{ java_download_path }}/{{ jdk_tarball_file }}.tar.gz'
+    validate_certs: false
+- name: mkdir for Java
+  file:
+    path: '{{ java_install_dir }}/jdk{{ jdk_version }}'
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,go=rx
+- name: unarchive tarball to {{ java_install_dir }}
+  unarchive:
+    src: '{{ java_download_path }}/{{ jdk_tarball_file }}.tar.gz'
+    dest: '{{ java_install_dir }}'
+    owner: root
+    group: root
+    mode: go-w
+    copy: false
+- name: link {{ java_install_dir }}/{{ java_default_link_name }} to {{ java_install_dir }}/jdk{{ jdk_version }}
+  file:
+    dest: '{{ java_install_dir }}/{{ java_default_link_name }}'
+    src: '{{ java_install_dir }}/jdk{{ jdk_version }}'
+    state: link
+- name: alternatives link for "java"
+  shell: update-alternatives --install /usr/bin/java java {{ java_install_dir }}/{{ java_default_link_name }}/bin/java 50
+- name: alternatives link for "javac"
+  shell: update-alternatives --install /usr/bin/javac javac {{ java_install_dir }}/{{ java_default_link_name }}/bin/javac 50
+- name: alternatives link for "jar"
+  shell: update-alternatives --install /usr/bin/jar jar {{ java_install_dir }}/{{ java_default_link_name }}/bin/jar 50

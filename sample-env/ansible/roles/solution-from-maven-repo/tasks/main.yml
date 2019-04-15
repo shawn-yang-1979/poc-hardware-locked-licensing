@@ -1,0 +1,72 @@
+--- 
+- name: set dest
+  set_fact:
+    maven_artifact_dest: "{{ maven_artifact_id }}-{{ maven_artifact_version }}"
+
+- name: set dest
+  set_fact:
+    maven_artifact_dest: "{{ maven_artifact_dest }}-{{ maven_artifact_classifier }}"
+  when: not((maven_artifact_classifier is undefined) or (maven_artifact_classifier is none) or (maven_artifact_classifier | trim == ''))
+  
+- name: print dest
+  debug:
+    var: maven_artifact_dest
+    
+- name: set path
+  set_fact:
+    maven_artifact_path: "/solution/{{ maven_artifact_id }}/{{ maven_artifact_dest }}"    
+
+- name: set path
+  set_fact:
+    maven_artifact_path: "{{ maven_artifact_path }}/{{ maven_artifact_instance_folder }}"
+  when: not((maven_artifact_instance_folder is undefined) or (maven_artifact_instance_folder is none) or (maven_artifact_instance_folder | trim == ''))
+
+- name: print path
+  debug:
+    var: maven_artifact_path
+
+- name: set symlink
+  set_fact:
+    maven_artifact_symlink: "default"
+  when: (maven_artifact_symlink is undefined) or (maven_artifact_symlink is none) or (maven_artifact_symlink | trim == '')
+
+- name: print symlink
+  debug:
+    var: maven_artifact_symlink
+
+- name: make sure a directory is created
+  file:
+    path: "{{ maven_artifact_path }}"
+    state: directory
+
+- name: remove old archive
+  file:
+    path: "{{ maven_artifact_path }}/{{ maven_artifact_dest }}.{{ maven_artifact_extension }}"
+    state: absent  
+  
+- name: download artifact from maven repository    
+  maven_artifact:
+    group_id: "{{ maven_artifact_group_id }}"
+    artifact_id: "{{ maven_artifact_id }}"
+    version: "{{ maven_artifact_version }}"
+    extension: "{{ maven_artifact_extension }}"
+    classifier: "{{ maven_artifact_classifier }}"
+    repository_url: "{{ maven_artifact_repository_url }}"
+    dest: "{{ maven_artifact_path }}/{{ maven_artifact_dest }}.{{ maven_artifact_extension }}"
+
+- name: unarchive artifact
+  unarchive:
+    src: "{{ maven_artifact_path }}/{{ maven_artifact_dest }}.{{ maven_artifact_extension }}"
+    dest: "{{ maven_artifact_path }}"
+    remote_src: yes
+  
+- name: make a symlink to the specific version
+  file:
+    src: "{{ maven_artifact_path }}"
+    dest: "/solution/{{ maven_artifact_id }}/{{ maven_artifact_symlink }}"
+    state: link
+    
+- name: install service
+  shell: |
+    cd /solution/{{ maven_artifact_id }}/{{ maven_artifact_symlink }}
+    ./install-service.sh

@@ -1,0 +1,2 @@
+staging-server ansible_host=10.137.18.231 ansible_user=pms
+dev-server ansible_host=192.168.150.11 ansible_user=vagrant

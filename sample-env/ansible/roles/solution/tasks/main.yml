@@ -1,0 +1,6 @@
+---
+# define common solution infrastructure
+- name: create the solution directory if it doesn't exist
+  file:
+    path: /solution
+    state: directory

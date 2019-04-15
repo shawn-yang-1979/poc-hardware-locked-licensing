@@ -1,0 +1,67 @@
+---
+- name: set symlink
+  set_fact:
+    delta_drc_lpr_artifact_symlink: "default"
+
+- name: print symlink
+  debug:
+    var: delta_drc_lpr_artifact_symlink
+
+- name: set dest
+  set_fact:
+    delta_drc_lpr_artifact_dest: "{{ delta_drc_lpr_artifact_id }}-{{ delta_drc_lpr_artifact_version }}"
+
+- name: print dest
+  debug:
+    var: delta_drc_lpr_artifact_dest
+
+- name: set path
+  set_fact:
+    delta_drc_lpr_artifact_path: "/solution/{{ delta_drc_lpr_artifact_id }}/{{ delta_drc_lpr_artifact_dest }}"    
+
+- name: print path
+  debug:
+    var: delta_drc_lpr_artifact_path
+
+- name: make sure a directory is created
+  file:
+    path: "{{ delta_drc_lpr_artifact_path }}"
+    state: directory
+
+- name: remove old archive
+  file:
+    path: "{{ delta_drc_lpr_artifact_path }}/{{ delta_drc_lpr_artifact_dest }}.{{ delta_drc_lpr_artifact_extension }}"
+    state: absent
+
+- name: download artifact from maven repository    
+  maven_artifact:
+    group_id: "{{ delta_drc_lpr_artifact_group_id }}"
+    artifact_id: "{{ delta_drc_lpr_artifact_id }}"
+    version: "{{ delta_drc_lpr_artifact_version }}"
+    extension: "{{ delta_drc_lpr_artifact_extension }}"
+    repository_url: "{{ maven_artifact_repository_url }}"
+    dest: "{{ delta_drc_lpr_artifact_path }}/{{ delta_drc_lpr_artifact_dest }}.{{ delta_drc_lpr_artifact_extension }}"
+
+- name: unarchive
+  unarchive:
+    src: "{{ delta_drc_lpr_artifact_path }}/{{ delta_drc_lpr_artifact_dest }}.{{ delta_drc_lpr_artifact_extension }}"
+    dest: "{{ delta_drc_lpr_artifact_path }}"
+    remote_src: yes
+
+- name: chmod    
+  file: 
+    dest: "{{ delta_drc_lpr_artifact_path }}"
+    mode: "u+x,g+x,o+x"
+    state: directory
+    recurse: yes    
+
+- name: make a symlink to the specific version
+  file:
+    src: "{{ delta_drc_lpr_artifact_path }}"
+    dest: "/solution/{{ delta_drc_lpr_artifact_id }}/{{ delta_drc_lpr_artifact_symlink }}"
+    state: link
+        
+#- name: Run lprsystem-deploy.sh
+#  shell: |
+#    cd /solution/{{ delta_drc_lpr_artifact_id }}/{{ delta_drc_lpr_artifact_symlink }}
+#    ./lprsystem-deploy.sh

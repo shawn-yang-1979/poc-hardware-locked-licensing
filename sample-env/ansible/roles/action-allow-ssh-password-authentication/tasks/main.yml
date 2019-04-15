@@ -1,0 +1,13 @@
+---      
+- name: make sure ansible host_key_checking is disabled
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^#?PasswordAuthentication"
+    line: "#PasswordAuthentication no"
+    backrefs: yes
+    backup: yes
+
+- name: reload service ssh, in all cases
+  service:
+    name: ssh
+    state: reloaded

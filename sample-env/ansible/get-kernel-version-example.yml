@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  become: yes
+
+  tasks:  
+# May need to upgrade linux kernel, otherwise latest docker can't run up.
+# Reference
+# https://github.com/rcbops/ansible-lxc-rpc/issues/92
+  - name: get kernel version
+    set_fact:
+      kernel_version: "{{ ansible_kernel.split('-')[0] }}"
+  - name: "current kernel is {{ kernel_version }}"
+    debug: 
+      var: kernel_version
+  - name: check kernel version
+    set_fact:
+      is_kernel_upgrade_required: "{{ kernel_version is version_compare('3.13.0', '<=') }}"     
+  - name: "kernel version {{ kernel_version }} should > 3.13.0"
+    debug: 
+      var: is_kernel_upgrade_required    
+    when: is_kernel_upgrade_required

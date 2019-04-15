@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+
+  roles:
+  - role: action-allow-ssh-password-authentication
+  - role: action-timezone
+    vars:
+      timezone_name: Asia/Taipei
+  - role: oracle-java-tarball      
+  - role: ansible-control-machine      

@@ -1,0 +1,5 @@
+---
+delta_drc_lpr_artifact_group_id: "com.delta.drc" 
+delta_drc_lpr_artifact_id: "lprsystem_setup"
+delta_drc_lpr_artifact_version: "2"
+delta_drc_lpr_artifact_extension: "tar.gz"

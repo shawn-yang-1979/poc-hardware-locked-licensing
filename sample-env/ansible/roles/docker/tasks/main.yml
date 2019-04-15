@@ -1,0 +1,21 @@
+---
+- name: Install python
+  apt:
+    name: python
+    state: latest
+    update_cache: yes
+
+- name: install python docker sdk
+  pip:
+    name: docker
+
+- name: test if docker is installed
+  command: docker
+  register: result
+  ignore_errors: True
+    
+- name: get docker
+  shell: curl -fsSL https://get.docker.com | sh
+  when: result is failed
+  args:
+    warn: False
