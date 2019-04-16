@@ -4,7 +4,9 @@ import lombok.Builder;
 import lombok.Getter;
 
 /**
- * I exclude cpu64bit, it seems not correct on windows Intel64 CPU.
+ * Exclude cpu64bit, it seems not correct on windows Intel64 CPU.
+ * 
+ * Exclude processorId, it may different with or without sudo.
  * 
  * @author SHAWN.SH.YANG
  *
@@ -16,7 +18,6 @@ public class CentralProcessorInfo {
 	private String vendor;
 	private String name;
 	private long vendorFreq;
-	private String processorId;
 	private String identifier;
 	private String stepping;
 	private String model;

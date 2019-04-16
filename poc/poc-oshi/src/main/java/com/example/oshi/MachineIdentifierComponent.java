@@ -75,7 +75,6 @@ public class MachineIdentifierComponent {
 				.vendor(centralProcessor.getVendor())//
 				.name(centralProcessor.getName())//
 				.vendorFreq(centralProcessor.getVendorFreq())//
-				.processorId(centralProcessor.getProcessorID())//
 				.identifier(centralProcessor.getIdentifier())//
 				.stepping(centralProcessor.getStepping())//
 				.model(centralProcessor.getModel())//
