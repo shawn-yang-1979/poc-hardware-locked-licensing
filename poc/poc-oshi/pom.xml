@@ -12,7 +12,7 @@
 	<artifactId>poc-oshi</artifactId>
 	<properties>
 		<jna.version>5.2.0</jna.version>
-	</properties>	
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -22,7 +22,11 @@
 			<groupId>com.github.oshi</groupId>
 			<artifactId>oshi-core</artifactId>
 			<version>3.13.0</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>

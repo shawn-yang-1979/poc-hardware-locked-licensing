@@ -21,11 +21,11 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner loadData(ComputerIdentifierComponent comp) {
+	public CommandLineRunner loadData(MachineIdentifierComponent comp) {
 		return args -> {
-			ComputerIdentifier cid = comp.getComputerIdentifier();
+			MachineIdentifierInfo cid = comp.getHardwareIdentifier();
 			ObjectMapper mapper = new ObjectMapper();
-			try (FileWriter file = new FileWriter(ComputerIdentifier.class.getSimpleName())) {
+			try (FileWriter file = new FileWriter(MachineIdentifierInfo.class.getSimpleName())) {
 				file.write(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(cid));
 				file.flush();
 			} catch (IOException e) {
