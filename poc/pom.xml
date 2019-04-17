@@ -17,7 +17,18 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<modules>
-		<module>poc-oshi</module>
+		<module>poc-key-pair-generator-main</module>
+		<module>poc-machine-info-read-main</module>
+		<module>poc-machine-info-sign-main</module>
+		<module>poc-machine-info-verify-example-main</module>
+		<module>poc-machine-info-verify</module>
+		<module>poc-machine-info-reader</module>
+		<module>poc-machine-info</module>
+		<module>poc-machine-info-signature</module>
+		<module>poc-digital-signature-sign</module>
+		<module>poc-digital-signature-verify</module>
+		<module>poc-digital-signature-properties</module>
+		<module>poc-digital-signature-configuration</module>
 	</modules>
 	<dependencies>
 		<dependency>
