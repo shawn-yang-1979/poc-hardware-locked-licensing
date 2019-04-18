@@ -1,7 +1,9 @@
 package com.example.machineinfo.read;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,11 +21,13 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner loadData(MachineInfoReader machineInfoReader) {
+	public CommandLineRunner runner(MachineInfoReader machineInfoReader) {
 		return args -> {
-			MachineInfo cid = machineInfoReader.getMachineInfo();
+			MachineInfo mi = machineInfoReader.getMachineInfo();
 			ObjectMapper mapper = new ObjectMapper();
-			mapper.writerWithDefaultPrettyPrinter().writeValue(Paths.get("data/machine-info.json").toFile(), cid);
+			FileUtils.write(Paths.get("data/machine-info.json").toFile(),
+					mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mi), StandardCharsets.UTF_8);
+
 		};
 	}
 

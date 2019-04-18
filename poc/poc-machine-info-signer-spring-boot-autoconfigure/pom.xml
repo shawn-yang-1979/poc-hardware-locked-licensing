@@ -9,21 +9,16 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../../poc</relativePath>
 	</parent>
-	<artifactId>poc-machine-info-sign-main</artifactId>
+	<artifactId>poc-machine-info-signer-spring-boot-autoconfigure</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-machine-info-signer-spring-boot-starter</artifactId>
+			<artifactId>poc-machine-info-signer</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -31,12 +26,4 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 </project>

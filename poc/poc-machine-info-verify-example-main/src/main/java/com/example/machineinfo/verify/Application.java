@@ -1,16 +1,20 @@
 package com.example.machineinfo.verify;
 
 import java.nio.file.Paths;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import com.example.digitalsignature.DigitalSignature;
 import com.example.machineinfo.MachineInfo;
 import com.example.machineinfo.MachineSignature;
 import com.example.machineinfo.reader.MachineInfoReader;
+import com.example.machineinfo.verifier.MachineInfoVerifier;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,28 +35,27 @@ public class Application {
 	}
 
 	@Bean
-	public MachineInfoReader machineInfoReader() {
-		return new MachineInfoReader();
+	public MachineInfoVerifier machineInfoVerifier(DigitalSignature digitalSignature) {
+		return new MachineInfoVerifier(digitalSignature, "keys/public.key");
 	}
 
-	@Bean
-	public CommandLineRunner loadData(DigitalSignature comp, MachineInfoReader machineInfoReader) {
-		return args -> {
+	@Component
+	public class Runner implements CommandLineRunner {
+
+		@Autowired
+		private MachineInfoVerifier machineInfoVerifier;
+		@Autowired
+		private MachineInfoReader machineInfoReader;
+		private ObjectMapper mapper = new ObjectMapper();
+
+		@Override
+		public void run(String... args) throws Exception {
 			MachineInfo mi = machineInfoReader.getMachineInfo();
-			ObjectMapper mapper = new ObjectMapper();
 			MachineSignature ms = mapper.readValue(Paths.get("data/machine-signature.json").toFile(),
 					MachineSignature.class);
-			String publicKeyPath = "keys/public.key";
-			log.info(print("Operation System", comp.verify(mapper.writeValueAsString(mi.getOperationSystem()),
-					ms.getOperationSystem(), publicKeyPath)));
-			log.info(print("Baseboard",
-					comp.verify(mapper.writeValueAsString(mi.getBaseboard()), ms.getBaseboard(), publicKeyPath)));
-		};
-
-	}
-
-	private String print(String label, boolean verify) {
-		return label + ": " + (verify ? "PASS" : "FAIL");
+			Map<String, String> fails = machineInfoVerifier.verify(mi, ms);
+			log.info("fails\n" + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(fails));
+		}
 	}
 
 }

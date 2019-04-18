@@ -8,11 +8,11 @@
 		<artifactId>poc</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../../poc</relativePath>
-	</parent>	
+	</parent>
 	<artifactId>poc-machine-info-read-main</artifactId>
 	<properties>
 		<jna.version>5.2.0</jna.version>
-	</properties>	
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -22,6 +22,11 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>poc-machine-info-reader-spring-boot-starter</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

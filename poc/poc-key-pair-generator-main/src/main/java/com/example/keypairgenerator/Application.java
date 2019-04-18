@@ -20,7 +20,7 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner loadData(KeyPairGeneratorComponent comp) {
+	public CommandLineRunner runner(KeyPairGeneratorComponent comp) {
 		return args -> comp.createKeys();
 	}
 

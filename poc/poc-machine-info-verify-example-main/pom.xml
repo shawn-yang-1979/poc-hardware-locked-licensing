@@ -12,16 +12,11 @@
 	<artifactId>poc-machine-info-verify-example-main</artifactId>
 	<properties>
 		<jna.version>5.2.0</jna.version>
-	</properties>		
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-digital-signature-spring-boot-starter</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -30,7 +25,12 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-machine-signature</artifactId>
+			<artifactId>poc-digital-signature-spring-boot-starter</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>poc-machine-info-verifier</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
