@@ -48,6 +48,10 @@ public class Application {
 					MachineSignature.class);
 			Map<String, String> fails = machineInfoVerifier.verify(mi, ms);
 			log.info("fails\n" + mapper.writerWithDefaultPrettyPrinter().writeValueAsString(fails));
+			if (fails.size() > 3) {
+				log.info("Machine is not matched.");
+				System.exit(fails.size());
+			}
 		}
 	}
 
