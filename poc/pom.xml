@@ -33,6 +33,8 @@
 		<module>poc-machine-info-signer-spring-boot-autoconfigure</module>
 		<module>poc-machine-info-signer-spring-boot-starter</module>
 		<module>poc-machine-info-verifier</module>
+		<module>poc-machine-info-verifier-spring-boot-autoconfigure</module>
+		<module>poc-machine-info-verifier-spring-boot-starter</module>
 		<module>poc-machine-info-plain-text-mapper</module>
 		<module>poc-digital-signature</module>
 		<module>poc-digital-signature-spring-boot-autoconfigure</module>

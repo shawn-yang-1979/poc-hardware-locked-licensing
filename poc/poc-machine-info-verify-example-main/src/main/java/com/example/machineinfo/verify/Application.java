@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import com.example.digitalsignature.DigitalSignature;
 import com.example.machineinfo.MachineInfo;
 import com.example.machineinfo.MachineSignature;
 import com.example.machineinfo.reader.MachineInfoReader;
@@ -32,11 +30,6 @@ public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class);
-	}
-
-	@Bean
-	public MachineInfoVerifier machineInfoVerifier(DigitalSignature digitalSignature) {
-		return new MachineInfoVerifier(digitalSignature, "keys/public.key");
 	}
 
 	@Component
