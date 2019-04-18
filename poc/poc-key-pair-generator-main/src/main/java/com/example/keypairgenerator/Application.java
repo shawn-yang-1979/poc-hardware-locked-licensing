@@ -20,8 +20,8 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner runner(KeyPairGeneratorComponent comp) {
-		return args -> comp.createKeys();
+	public CommandLineRunner runner(KeyPairGeneratorUtils comp) {
+		return args -> comp.generateKeyPair();
 	}
 
 }

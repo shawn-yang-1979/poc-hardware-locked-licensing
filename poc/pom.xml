@@ -23,17 +23,20 @@
 		<module>poc-machine-info-verify-example-main</module>
 		<module>poc-machine-info</module>
 		<module>poc-machine-signature</module>
+		<module>poc-key-pair-generator</module>
+		<module>poc-key-pair-generator-spring-boot-autoconfigure</module>
+		<module>poc-key-pair-generator-spring-boot-starter</module>		
 		<module>poc-machine-info-reader</module>
-		<module>poc-machine-info-reader-spring-boot-starter</module>
 		<module>poc-machine-info-reader-spring-boot-autoconfigure</module>
+		<module>poc-machine-info-reader-spring-boot-starter</module>
 		<module>poc-machine-info-signer</module>
-		<module>poc-machine-info-signer-spring-boot-starter</module>
 		<module>poc-machine-info-signer-spring-boot-autoconfigure</module>
+		<module>poc-machine-info-signer-spring-boot-starter</module>
 		<module>poc-machine-info-verifier</module>
 		<module>poc-machine-info-plain-text-mapper</module>
 		<module>poc-digital-signature</module>
-		<module>poc-digital-signature-spring-boot-starter</module>
 		<module>poc-digital-signature-spring-boot-autoconfigure</module>
+		<module>poc-digital-signature-spring-boot-starter</module>
 	</modules>
 	<dependencies>
 		<dependency>
