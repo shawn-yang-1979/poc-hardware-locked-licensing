@@ -9,11 +9,21 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../../poc</relativePath>
 	</parent>
-	<artifactId>poc-machine-info-verify</artifactId>
+	<artifactId>poc-machine-info-reader-spring-boot-autoconfigure</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>poc-machine-info-reader</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 </project>

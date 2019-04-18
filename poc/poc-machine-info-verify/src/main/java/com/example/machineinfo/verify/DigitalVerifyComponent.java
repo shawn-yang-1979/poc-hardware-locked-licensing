@@ -8,7 +8,6 @@ import java.security.Signature;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
@@ -22,7 +21,6 @@ import lombok.Data;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "digital-verify")
 public class DigitalVerifyComponent {
 
 	/**

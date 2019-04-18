@@ -17,24 +17,19 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
+			<artifactId>poc-digital-signature-spring-boot-starter</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>poc-machine-info</artifactId>
 			<version>${project.version}</version>
 		</dependency>		
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-machine-info-signature</artifactId>
+			<artifactId>poc-machine-signature</artifactId>
 			<version>${project.version}</version>
-		</dependency>		
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-digital-signature-sign</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-digital-signature-configuration</artifactId>
-			<version>${project.version}</version>
-		</dependency>		
+		</dependency>			
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>

@@ -19,11 +19,6 @@ public class Application {
 	}
 
 	@Bean
-	public MachineInfoReader machineInfoReader() {
-		return new MachineInfoReader();
-	}
-
-	@Bean
 	public CommandLineRunner loadData(MachineInfoReader machineInfoReader) {
 		return args -> {
 			MachineInfo cid = machineInfoReader.getMachineInfo();

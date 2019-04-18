@@ -7,15 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.digitalsignature.EnableDigitalSignature;
-import com.example.digitalsignature.sign.SignComponent;
+import com.example.digitalsignature.DigitalSignature;
 import com.example.machineinfo.MachineInfo;
 import com.example.machineinfo.MachineSignature;
 import com.example.machineinfo.hardware.NetworkIfInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
-@EnableDigitalSignature
 public class Application {
 
 	public static void main(String[] args) {
@@ -23,7 +21,7 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner loadData(SignComponent comp) {
+	public CommandLineRunner loadData(DigitalSignature comp) {
 		return args -> {
 			ObjectMapper mapper = new ObjectMapper();
 			MachineInfo machineInfo = mapper.readValue(Paths.get("data/machine-info.json").toFile(), MachineInfo.class);

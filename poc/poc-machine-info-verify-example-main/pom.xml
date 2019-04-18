@@ -20,22 +20,17 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-machine-info-reader</artifactId>
+			<artifactId>poc-digital-signature-spring-boot-starter</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-machine-info-signature</artifactId>
+			<artifactId>poc-machine-info-reader-spring-boot-starter</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-digital-signature-verify</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>poc-digital-signature-configuration</artifactId>
+			<artifactId>poc-machine-signature</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
