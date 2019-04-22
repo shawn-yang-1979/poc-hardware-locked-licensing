@@ -21,5 +21,10 @@
 			<artifactId>poc-machine-info-signer-spring-boot-autoconfigure</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>poc-machine-info-signer</artifactId>
+			<version>${project.version}</version>
+		</dependency>		
 	</dependencies>
 </project>

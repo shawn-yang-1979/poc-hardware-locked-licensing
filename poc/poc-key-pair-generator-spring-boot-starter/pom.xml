@@ -12,8 +12,17 @@
 	<artifactId>poc-key-pair-generator-spring-boot-starter</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>	
+		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>poc-key-pair-generator-spring-boot-autoconfigure</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>poc-key-pair-generator</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

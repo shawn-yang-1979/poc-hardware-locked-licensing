@@ -21,5 +21,10 @@
 			<artifactId>poc-machine-info-verifier-spring-boot-autoconfigure</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>poc-machine-info-verifier</artifactId>
+			<version>${project.version}</version>			
+		</dependency>		
 	</dependencies>
 </project>

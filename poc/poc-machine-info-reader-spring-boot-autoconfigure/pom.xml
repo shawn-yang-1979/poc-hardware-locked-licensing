@@ -19,6 +19,7 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>poc-machine-info-reader</artifactId>
 			<version>${project.version}</version>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
